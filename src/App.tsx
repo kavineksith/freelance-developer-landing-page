@@ -1,11 +1,11 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import * as LucideIcons from 'lucide-react';
-import { 
-  Sun, Moon, Star, Send, ChevronDown, CheckCircle2, Globe, Clock, 
-  Code2, Layout, Database, ShieldCheck, Cpu, Cloud, Box, Atom, Palette, 
-  Scale, AlertTriangle, FileText, Zap, MousePointer2, Hammer, ShieldAlert,
-  Info, Image as LucideImage, Server, MapPin, Coffee, Users, Mail, Linkedin,
+import {
+  Sun, Moon, Star, Send, ChevronDown, CheckCircle2, Globe, Clock,
+  Code2, Layout, Database, ShieldCheck, Cpu,
+  Scale, FileText, Zap, MousePointer2, Hammer, ShieldAlert,
+  Image as LucideImage, Server, MapPin, Coffee, Users, Mail, Linkedin,
   ArrowUp
 } from 'lucide-react';
 import { GlassCard } from './components/GlassCard';
@@ -56,7 +56,7 @@ const Typewriter: React.FC = () => {
 const FloatingTechBadge: React.FC<{ icon: string, name: string, className?: string, delay?: string }> = ({ icon, name, className = '', delay = '0s' }) => {
   const IconComponent = (LucideIcons as any)[icon] || Code2;
   return (
-    <div 
+    <div
       className={`absolute z-20 flex items-center gap-2 px-4 py-2 bg-white/70 dark:bg-slate-800/80 rounded-2xl border border-white/40 dark:border-slate-700/50 shadow-2xl backdrop-blur-xl group hover:scale-110 transition-all cursor-default animate-float ${className}`}
       style={{ animationDelay: delay }}
     >
@@ -86,9 +86,8 @@ const BackToTop: React.FC = () => {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-8 right-8 z-[90] p-4 rounded-2xl glass bg-white/40 dark:bg-slate-800/40 border border-white/20 dark:border-slate-700/30 shadow-2xl transition-all duration-500 ${
-        visible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
-      } hover:bg-indigo-600 hover:text-white group active:scale-90`}
+      className={`fixed bottom-8 right-8 z-[90] p-4 rounded-2xl glass bg-white/40 dark:bg-slate-800/40 border border-white/20 dark:border-slate-700/30 shadow-2xl transition-all duration-500 ${visible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'
+        } hover:bg-indigo-600 hover:text-white group active:scale-90`}
       aria-label="Back to home"
     >
       <ArrowUp className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
@@ -138,7 +137,7 @@ const App: React.FC = () => {
       <BackToTop />
       <InquiryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} planName={selectedPlan} />
       <LegalModal isOpen={isLegalOpen} onClose={() => setIsLegalOpen(false)} initialSection={legalSection} />
-      
+
       {/* BG DECORATION */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
         <div className="absolute top-[-20%] left-[-10%] w-[80%] h-[80%] bg-indigo-500/10 dark:bg-indigo-600/10 blur-[160px] rounded-full animate-pulse"></div>
@@ -197,14 +196,14 @@ const App: React.FC = () => {
               </a>
             </div>
           </div>
-          
+
           <div className="flex-1 relative w-full lg:max-w-2xl mt-12 lg:mt-0">
             <div className="relative z-10 animate-float">
-               <GlassCard className="p-3 aspect-[4/3] flex items-center justify-center overflow-hidden border-white/50 dark:border-slate-700 shadow-2xl" hoverEffect={false}>
-                  <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80" alt="Code Workspace" className="rounded-2xl object-cover w-full h-full relative z-10 brightness-95 dark:brightness-110" />
-               </GlassCard>
+              <GlassCard className="p-3 aspect-[4/3] flex items-center justify-center overflow-hidden border-white/50 dark:border-slate-700 shadow-2xl" hoverEffect={false}>
+                  <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80" crossOrigin="anonymous" alt="Code Workspace" className="rounded-2xl object-cover w-full h-full relative z-10 brightness-95 dark:brightness-110" />
+              </GlassCard>
             </div>
-            
+
             <FloatingTechBadge icon="Atom" name="React" className="-top-12 left-10" delay="0s" />
             <FloatingTechBadge icon="Cpu" name="Node.js" className="top-20 -right-12" delay="1s" />
             <FloatingTechBadge icon="Database" name="MySQL" className="-bottom-12 right-20" delay="2s" />
@@ -228,7 +227,7 @@ const App: React.FC = () => {
               <h3 className="text-3xl font-black uppercase tracking-tight">Logic & Art</h3>
             </div>
             <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-medium mb-8 text-center sm:text-left">
-              Founded in 2018, <strong>INSOPHINIA SOLUTIONS</strong> was built on the belief that software should be as beautiful as it is functional. 
+              Founded in 2018, <strong>INSOPHINIA SOLUTIONS</strong> was built on the belief that software should be as beautiful as it is functional.
               As an independent freelance enterprise based in <strong>Sri Lanka</strong>, we offer a personal, direct partnership that large agencies cannot replicate.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -266,7 +265,7 @@ const App: React.FC = () => {
       {/* SERVICES SECTION */}
       <Section id="services" title="Our Core Expertise" subtitle="Precision tools for modern enterprises. Built with security-first architecture.">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-           {[
+          {[
             { icon: Layout, title: 'Interface Mastery', color: 'blue', desc: 'Glassmorphic, fluid UI components with macOS-inspired fluidity.' },
             { icon: Database, title: 'Engineered Data', color: 'emerald', desc: 'Secure database architectures designed for zero-latency operations.' },
             { icon: ShieldCheck, title: 'Total Security', color: 'purple', desc: 'Ironclad auth, data encryption, and robust QA for mission-critical apps.' },
@@ -293,7 +292,7 @@ const App: React.FC = () => {
               </div>
               <h3 className="text-3xl font-black mb-3 uppercase tracking-tighter">{plan.name}</h3>
               <p className="text-slate-500 dark:text-slate-400 mb-8 text-[13px] font-medium leading-relaxed">{plan.description}</p>
-              
+
               <div className="mb-10">
                 <span className="text-3xl font-black text-indigo-600 dark:text-indigo-400 tracking-tighter">{plan.pricing.base}</span>
               </div>
@@ -308,12 +307,12 @@ const App: React.FC = () => {
               </div>
 
               <div className="pt-6 border-t border-slate-200 dark:border-slate-800 mb-8">
-                 <p className="text-[10px] font-black uppercase tracking-widest text-indigo-500 mb-3">Timeline: {plan.timeline}</p>
-                 <div className="flex flex-wrap gap-2">
-                    {plan.techStack.map((tech, i) => (
-                      <span key={i} className="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-[9px] font-black uppercase rounded-md border border-slate-200 dark:border-slate-700">{tech.name}</span>
-                    ))}
-                 </div>
+                <p className="text-[10px] font-black uppercase tracking-widest text-indigo-500 mb-3">Timeline: {plan.timeline}</p>
+                <div className="flex flex-wrap gap-2">
+                  {plan.techStack.map((tech, i) => (
+                    <span key={i} className="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-[9px] font-black uppercase rounded-md border border-slate-200 dark:border-slate-700">{tech.name}</span>
+                  ))}
+                </div>
               </div>
 
               <button onClick={() => openInquiry(plan.name)} className={`w-full py-5 rounded-2xl font-black text-lg transition-all active:scale-95 uppercase tracking-widest ${plan.featured ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-xl' : 'bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700'}`}>
@@ -325,19 +324,19 @@ const App: React.FC = () => {
 
         {/* QUICK COMPARISON */}
         <div className="mt-24 max-w-4xl mx-auto">
-           <h4 className="text-2xl font-black uppercase tracking-tighter text-center mb-10">Quick Comparison</h4>
-           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              {[
-                { label: 'Lite', val: 'Frontend Landing Pages' },
-                { label: 'Pro', val: 'Backend + Database + CRUD' },
-                { label: 'Elite', val: 'Full Secure Enterprise Systems' }
-              ].map((item, i) => (
-                <div key={i} className="p-6 rounded-2xl bg-white/30 dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 text-center">
-                   <p className="text-indigo-500 font-black text-sm uppercase tracking-[0.2em] mb-2">{item.label}</p>
-                   <p className="text-[12px] font-bold text-slate-600 dark:text-slate-400">{item.val}</p>
-                </div>
-              ))}
-           </div>
+          <h4 className="text-2xl font-black uppercase tracking-tighter text-center mb-10">Quick Comparison</h4>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {[
+              { label: 'Lite', val: 'Frontend Landing Pages' },
+              { label: 'Pro', val: 'Backend + Database + CRUD' },
+              { label: 'Elite', val: 'Full Secure Enterprise Systems' }
+            ].map((item, i) => (
+              <div key={i} className="p-6 rounded-2xl bg-white/30 dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 text-center">
+                <p className="text-indigo-500 font-black text-sm uppercase tracking-[0.2em] mb-2">{item.label}</p>
+                <p className="text-[12px] font-bold text-slate-600 dark:text-slate-400">{item.val}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* LEGAL PROTOCOLS */}
@@ -376,28 +375,28 @@ const App: React.FC = () => {
       {/* ASSETS & HOSTING */}
       <Section id="assets" title="Deployment & Resources">
         <div className="grid md:grid-cols-2 gap-10">
-           <GlassCard className="p-10 text-center">
-              <div className="flex flex-col items-center gap-4 mb-8">
-                 <LucideImage className="text-indigo-500 w-8 h-8" />
-                 <h4 className="text-2xl font-black uppercase tracking-tight">Visual Arsenal</h4>
-              </div>
-              <div className="flex flex-wrap justify-center gap-3">
-                 {['AI Generated', 'Unsplash', 'Material Icons', 'FontAwesome', 'Custom Vectors'].map((item, i) => (
-                   <span key={i} className="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl text-xs font-bold border border-slate-200 dark:border-slate-700">{item}</span>
-                 ))}
-              </div>
-           </GlassCard>
-           <GlassCard className="p-10 text-center">
-              <div className="flex flex-col items-center gap-4 mb-8">
-                 <Server className="text-indigo-500 w-8 h-8" />
-                 <h4 className="text-2xl font-black uppercase tracking-tight">Cloud & Hosting</h4>
-              </div>
-              <div className="flex flex-wrap justify-center gap-3">
-                 {['Vercel', 'Netlify', 'GitHub Pages', 'Email Guidance', 'Source Storage'].map((item, i) => (
-                   <span key={i} className="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl text-xs font-bold border border-slate-200 dark:border-slate-700">{item}</span>
-                 ))}
-              </div>
-           </GlassCard>
+          <GlassCard className="p-10 text-center">
+            <div className="flex flex-col items-center gap-4 mb-8">
+              <LucideImage className="text-indigo-500 w-8 h-8" />
+              <h4 className="text-2xl font-black uppercase tracking-tight">Visual Arsenal</h4>
+            </div>
+            <div className="flex flex-wrap justify-center gap-3">
+              {['AI Generated', 'Unsplash', 'Material Icons', 'FontAwesome', 'Custom Vectors'].map((item, i) => (
+                <span key={i} className="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl text-xs font-bold border border-slate-200 dark:border-slate-700">{item}</span>
+              ))}
+            </div>
+          </GlassCard>
+          <GlassCard className="p-10 text-center">
+            <div className="flex flex-col items-center gap-4 mb-8">
+              <Server className="text-indigo-500 w-8 h-8" />
+              <h4 className="text-2xl font-black uppercase tracking-tight">Cloud & Hosting</h4>
+            </div>
+            <div className="flex flex-wrap justify-center gap-3">
+              {['Vercel', 'Netlify', 'GitHub Pages', 'Email Guidance', 'Source Storage'].map((item, i) => (
+                <span key={i} className="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded-xl text-xs font-bold border border-slate-200 dark:border-slate-700">{item}</span>
+              ))}
+            </div>
+          </GlassCard>
         </div>
       </Section>
 
@@ -449,38 +448,38 @@ const App: React.FC = () => {
           <GlassCard className="p-8 border-indigo-500/20" hoverEffect={false}>
             <h4 className="text-xl font-black uppercase tracking-tight mb-6 text-center">Communicate</h4>
             <div className="flex flex-col gap-4">
-               <button onClick={() => window.open('https://t.me/insophinia_dev', '_blank')} className="flex items-center gap-4 p-4 rounded-2xl bg-white/50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-700 transition-all border border-transparent hover:border-indigo-500/20">
-                  <div className="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-white shadow-lg">
-                    <Send className="w-5 h-5" />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-[10px] font-black uppercase tracking-widest opacity-50">Telegram</p>
-                    <p className="text-sm font-black tracking-tight">@insophinia_dev</p>
-                  </div>
-               </button>
-               <button onClick={() => window.location.href = 'mailto:contact@insophinia.com'} className="flex items-center gap-4 p-4 rounded-2xl bg-white/50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-700 transition-all border border-transparent hover:border-indigo-500/20">
-                  <div className="w-10 h-10 bg-rose-500 rounded-xl flex items-center justify-center text-white shadow-lg">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-[10px] font-black uppercase tracking-widest opacity-50">Email</p>
-                    <p className="text-sm font-black tracking-tight">contact@insophinia.com</p>
-                  </div>
-               </button>
-               <button onClick={() => window.open('https://linkedin.com/company/insophinia', '_blank')} className="flex items-center gap-4 p-4 rounded-2xl bg-white/50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-700 transition-all border border-transparent hover:border-indigo-500/20">
-                  <div className="w-10 h-10 bg-sky-600 rounded-xl flex items-center justify-center text-white shadow-lg">
-                    <Linkedin className="w-5 h-5" />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-[10px] font-black uppercase tracking-widest opacity-50">LinkedIn</p>
-                    <p className="text-sm font-black tracking-tight">insophinia-solutions</p>
-                  </div>
-               </button>
+              <button onClick={() => window.open('https://t.me/insophinia_dev', '_blank')} className="flex items-center gap-4 p-4 rounded-2xl bg-white/50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-700 transition-all border border-transparent hover:border-indigo-500/20">
+                <div className="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-white shadow-lg">
+                  <Send className="w-5 h-5" />
+                </div>
+                <div className="text-left">
+                  <p className="text-[10px] font-black uppercase tracking-widest opacity-50">Telegram</p>
+                  <p className="text-sm font-black tracking-tight">@insophinia_dev</p>
+                </div>
+              </button>
+              <button onClick={() => window.location.href = 'mailto:contact@insophinia.com'} className="flex items-center gap-4 p-4 rounded-2xl bg-white/50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-700 transition-all border border-transparent hover:border-indigo-500/20">
+                <div className="w-10 h-10 bg-rose-500 rounded-xl flex items-center justify-center text-white shadow-lg">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div className="text-left">
+                  <p className="text-[10px] font-black uppercase tracking-widest opacity-50">Email</p>
+                  <p className="text-sm font-black tracking-tight">contact@insophinia.com</p>
+                </div>
+              </button>
+              <button onClick={() => window.open('https://linkedin.com/company/insophinia', '_blank')} className="flex items-center gap-4 p-4 rounded-2xl bg-white/50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-700 transition-all border border-transparent hover:border-indigo-500/20">
+                <div className="w-10 h-10 bg-sky-600 rounded-xl flex items-center justify-center text-white shadow-lg">
+                  <Linkedin className="w-5 h-5" />
+                </div>
+                <div className="text-left">
+                  <p className="text-[10px] font-black uppercase tracking-widest opacity-50">LinkedIn</p>
+                  <p className="text-sm font-black tracking-tight">insophinia-solutions</p>
+                </div>
+              </button>
             </div>
             <div className="mt-8">
-               <button onClick={() => openInquiry('Immediate Consultation')} className="w-full py-4 bg-indigo-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-indigo-700 transition-all shadow-xl active:scale-95">
-                 Send Secure Message
-               </button>
+              <button onClick={() => openInquiry('Immediate Consultation')} className="w-full py-4 bg-indigo-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-indigo-700 transition-all shadow-xl active:scale-95">
+                Send Secure Message
+              </button>
             </div>
           </GlassCard>
         </div>
@@ -508,7 +507,7 @@ const App: React.FC = () => {
       {/* FOOTER */}
       <footer className="py-24 px-8 border-t border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-950/50 text-center">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 items-start">
-          
+
           {/* Brand - Span 2 columns in Tablet (md) and Desktop (lg) */}
           <div className="col-span-1 md:col-span-2 flex flex-col items-center">
             <div className="flex flex-col items-center gap-4 mb-10">
