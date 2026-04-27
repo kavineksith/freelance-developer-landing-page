@@ -201,7 +201,7 @@ const App: React.FC = () => {
           <div className="flex-1 relative w-full lg:max-w-2xl mt-12 lg:mt-0">
             <div className="relative z-10 animate-float">
                <GlassCard className="p-3 aspect-[4/3] flex items-center justify-center overflow-hidden border-white/50 dark:border-slate-700 shadow-2xl" hoverEffect={false}>
-                  <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200" alt="Code Workspace" className="rounded-2xl object-cover w-full h-full relative z-10 brightness-95 dark:brightness-110" />
+                  <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80" alt="Code Workspace" className="rounded-2xl object-cover w-full h-full relative z-10 brightness-95 dark:brightness-110" />
                </GlassCard>
             </div>
             
