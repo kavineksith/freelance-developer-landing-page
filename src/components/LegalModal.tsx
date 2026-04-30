@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { X, ShieldCheck, Scale, FileText, AlertTriangle, ShieldAlert, Zap, Hammer, Info } from 'lucide-react';
+import { X, ShieldCheck, Scale, FileText, ShieldAlert, Zap, Hammer, Info } from 'lucide-react';
 import { GlassCard } from './GlassCard';
 
 interface LegalModalProps {
