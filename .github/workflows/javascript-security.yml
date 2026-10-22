@@ -1,0 +1,133 @@
+name: JavaScript and TypeScript Security
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 3 * * 1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: js-ts-security-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  dependency-audit-and-quality:
+    name: Dependency audit and project checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Detect package manager
+        id: manager
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f pnpm-lock.yaml ]]; then
+            echo "manager=pnpm" >> "$GITHUB_OUTPUT"
+          elif [[ -f yarn.lock ]]; then
+            echo "manager=yarn" >> "$GITHUB_OUTPUT"
+          elif [[ -f bun.lock || -f bun.lockb ]]; then
+            echo "manager=bun" >> "$GITHUB_OUTPUT"
+          elif [[ -f package-lock.json || -f npm-shrinkwrap.json ]]; then
+            echo "manager=npm" >> "$GITHUB_OUTPUT"
+          else
+            echo "::error::No supported lockfile found."
+            exit 1
+          fi
+
+      - name: Enable Corepack
+        if: steps.manager.outputs.manager == 'pnpm' || steps.manager.outputs.manager == 'yarn'
+        run: corepack enable
+
+      - name: Set up pnpm
+        if: steps.manager.outputs.manager == 'pnpm'
+        run: corepack prepare pnpm@latest --activate
+
+      - name: Set up Bun
+        if: steps.manager.outputs.manager == 'bun'
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install npm dependencies
+        if: steps.manager.outputs.manager == 'npm'
+        run: npm ci
+
+      - name: Install pnpm dependencies
+        if: steps.manager.outputs.manager == 'pnpm'
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Yarn dependencies
+        if: steps.manager.outputs.manager == 'yarn'
+        run: |
+          if yarn --version | grep -q '^1\.'; then
+            yarn install --frozen-lockfile
+          else
+            yarn install --immutable
+          fi
+
+      - name: Install Bun dependencies
+        if: steps.manager.outputs.manager == 'bun'
+        run: bun install --frozen-lockfile
+
+      - name: Audit npm dependencies
+        if: steps.manager.outputs.manager == 'npm'
+        run: npm audit --audit-level=high
+
+      - name: Audit pnpm dependencies
+        if: steps.manager.outputs.manager == 'pnpm'
+        run: pnpm audit --audit-level high
+
+      - name: Audit Yarn dependencies
+        if: steps.manager.outputs.manager == 'yarn'
+        run: |
+          if yarn --version | grep -q '^1\.'; then
+            yarn audit --level high
+          else
+            yarn npm audit --severity high
+          fi
+
+      - name: Note Bun audit limitation
+        if: steps.manager.outputs.manager == 'bun'
+        run: echo "::notice::Add an approved vulnerability scanner for dependency auditing with Bun projects."
+
+      - name: Run available lint, test, and build scripts
+        shell: bash
+        run: |
+          set -euo pipefail
+          manager="${{ steps.manager.outputs.manager }}"
+          run_script() {
+            local script="$1"
+            if node -e 'const p=require("./package.json"); process.exit(p.scripts && p.scripts[process.argv[1]] ? 0 : 1)' "$script"; then
+              case "$manager" in
+                npm) npm run "$script" ;;
+                pnpm) pnpm run "$script" ;;
+                yarn) yarn "$script" ;;
+                bun) bun run "$script" ;;
+              esac
+            else
+              echo "No '$script' script defined; skipping."
+            fi
+          }
+          run_script lint
+          run_script test
+          run_script build
+
+      - name: Write job summary
+        if: always()
+        run: |
+          {
+            echo "## JavaScript/TypeScript security checks"
+            echo "- Repository: \`${GITHUB_REPOSITORY}\`"
+            echo "- Ref: \`${GITHUB_REF_NAME}\`"
+            echo "- [View this run](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID})"
+          } >> "$GITHUB_STEP_SUMMARY"
